@@ -12,10 +12,11 @@ class PlayersListPresenter(val context: ResLocator, val repository: PlayersRepos
 
     private var listGroupedPlayer: List<GroupedPlayers> = emptyList()
 
-
     override suspend fun initialize() {
 
-        coroutine { repository.getListOfPlayer() }.await().let { result ->
+        coroutine {
+            repository.getListOfPlayer()
+        }.await().let { result ->
             if (result.success()) {
                 listGroupedPlayer = result.first ?: emptyList()
                 val categories = listGroupedPlayer.map { c -> c.title }
@@ -23,6 +24,8 @@ class PlayersListPresenter(val context: ResLocator, val repository: PlayersRepos
                 val typeLayout = listGroupedPlayer[0].type
                 view?.fillCategoriesSpinner(categories)
                 view?.fillGroupedPlayersRecycler(dataPlayers, typeLayout)
+            } else {
+                view?.showMessageError(result.second?.message() ?: "")
             }
         }
     }
@@ -30,10 +33,11 @@ class PlayersListPresenter(val context: ResLocator, val repository: PlayersRepos
     interface MVPView {
         fun fillCategoriesSpinner(categoryList: List<String>)
         fun fillGroupedPlayersRecycler(listPlayers: List<Player>, typeLayout: String)
+        fun showMessageError(message: String)
     }
 
     interface Navigator {
-
+        /** no es necesario pero lo dejamos preparado para futuros **/
     }
 
     fun updateRecyclerPlayerList(positionSpinner: Int) {
@@ -41,5 +45,4 @@ class PlayersListPresenter(val context: ResLocator, val repository: PlayersRepos
         val typeLayout = listGroupedPlayer[positionSpinner].type
         view?.fillGroupedPlayersRecycler(listPlayers, typeLayout)
     }
-
 }

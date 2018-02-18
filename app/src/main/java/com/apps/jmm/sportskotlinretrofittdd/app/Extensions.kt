@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Spinner
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import es.voghdev.chucknorrisjokes.model.AbsError
@@ -51,6 +52,8 @@ fun ViewGroup.inflate(itemHolder: Int): View = LayoutInflater.from(context).infl
 fun Spinner.configureDefaultAdapter(values: List<String>) {
     adapter = ArrayAdapter<String>(context, R.layout.simple_spinner_item, values)
 }
+
+fun Context.toast(message: String, timeShowing: Int = Toast.LENGTH_LONG) = Toast.makeText(this, message, timeShowing).show()
 
 fun Context.hideSoftKeyboard(v: View) {
     val imm: InputMethodManager? = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

@@ -15,7 +15,7 @@ import com.apps.jmm.sportskotlinretrofittdd.ui.adapter.PlayersListAdapter
 import com.apps.jmm.sportskotlinretrofittdd.ui.presenter.PlayersListPresenter
 import kotlinx.android.synthetic.main.fragment_player_list.*
 import kotlinx.coroutines.experimental.runBlocking
-
+import org.jetbrains.anko.support.v4.toast
 
 class PlayerListFragment : BaseFragment(), PlayersListPresenter.MVPView, PlayersListPresenter.Navigator {
 
@@ -28,7 +28,6 @@ class PlayerListFragment : BaseFragment(), PlayersListPresenter.MVPView, Players
         presenter = PlayersListPresenter(AndroidResLocator(context), playersRepository)
         presenter?.view = this
         presenter?.navigator = this
-
         runBlocking { presenter?.initialize() }
 
         spn_categories.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -53,16 +52,17 @@ class PlayerListFragment : BaseFragment(), PlayersListPresenter.MVPView, Players
 
     override fun fillGroupedPlayersRecycler(listPlayers: List<Player>, typeLayout: String) {
         val typeListGrid = "GRID"
-        val switchLayout : Boolean
+        val switchLayout: Boolean
 
         if (typeLayout == typeListGrid) {
-            recycler.layoutManager = GridLayoutManager(context,2)
+            rcv_recycler.layoutManager = GridLayoutManager(context, 2)
             switchLayout = true
         } else {
-            recycler.layoutManager = LinearLayoutManager(context)
+            rcv_recycler.layoutManager = LinearLayoutManager(context)
             switchLayout = false
         }
-        recycler.adapter = PlayersListAdapter(context, listPlayers, switchLayout)
+        rcv_recycler.setHasFixedSize(true)
+        rcv_recycler.adapter = PlayersListAdapter(context, listPlayers, switchLayout)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -73,6 +73,10 @@ class PlayerListFragment : BaseFragment(), PlayersListPresenter.MVPView, Players
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
 
-        savedInstanceState?.getInt("SPINNER_POSITION",0)?.let { spn_categories.setSelection(it) }
+        savedInstanceState?.getInt("SPINNER_POSITION", 0)?.let { spn_categories.setSelection(it) }
+    }
+
+    override fun showMessageError(message: String) {
+        toast(message)
     }
 }

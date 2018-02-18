@@ -10,11 +10,9 @@ import com.apps.jmm.sportskotlinretrofittdd.app.loadUrl
 import com.apps.jmm.sportskotlinretrofittdd.model.Player
 import kotlinx.android.synthetic.main.item_layout.view.*
 
-
 class PlayersListAdapter(val context: Context?, private val players: List<Player> = emptyList(), private var type: Boolean = false) : RecyclerView.Adapter<PlayersListAdapter.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PlayersListAdapter.ItemViewHolder {
-
         val itemViewHolder = parent?.inflate(if (type) R.layout.item_layout_grid else R.layout.item_layout)
         return ItemViewHolder(itemViewHolder)
     }
@@ -31,7 +29,7 @@ class PlayersListAdapter(val context: Context?, private val players: List<Player
 
         fun bind(item: Player) = with(itemView) {
             media_title.text = "${item.name} ${item.surname}"
-            media_thumb.loadUrl(item.image,R.drawable.ic_launcher_foreground)
+            media_thumb.loadUrl(item.image, R.drawable.ic_launcher_foreground)
         }
     }
 }

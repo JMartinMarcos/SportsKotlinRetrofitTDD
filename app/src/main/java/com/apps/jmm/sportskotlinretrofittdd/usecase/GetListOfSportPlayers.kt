@@ -1,7 +1,6 @@
 package com.apps.jmm.sportskotlinretrofittdd.usecase
 
 import com.apps.jmm.sportskotlinretrofittdd.model.GroupedPlayers
-import com.apps.jmm.sportskotlinretrofittdd.model.ListGroupedPlayers
 import es.voghdev.chucknorrisjokes.model.AbsError
 
 interface GetListOfSportPlayers {

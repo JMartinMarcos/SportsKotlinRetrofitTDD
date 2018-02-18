@@ -7,22 +7,9 @@
 
     <ImageView
         android:id="@+id/media_thumb"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginRight="2dp"
-        android:layout_weight="1"
-        android:contentDescription="@string/background_image"
-        android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher" />
+        style="@style/itemImageList" />
 
     <TextView
         android:id="@+id/media_title"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_weight="1"
-        android:background="#333"
-        android:padding="80dp"
-        android:textAlignment="center"
-        android:text="Name Surname"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse" />
+        style="@style/itemTextList.LandScape" />
 </LinearLayout>
