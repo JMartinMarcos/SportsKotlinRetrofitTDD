@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="2dp">
+
+    <ImageView
+        android:id="@+id/media_thumb"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginRight="2dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/background_image"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/media_title"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_weight="1"
+        android:background="#333"
+        android:padding="55dp"
+        android:textAlignment="center"
+        android:text="@string/name_surname"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse" />
+</LinearLayout>

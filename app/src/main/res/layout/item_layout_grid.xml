@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="2dp">
+
+    <ImageView
+        android:id="@+id/media_thumb"
+        style="@style/itemImageGrid" />
+
+    <TextView
+        android:id="@+id/media_title"
+        style="@style/itemTextGrid" />
+</LinearLayout>
